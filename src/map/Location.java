@@ -18,11 +18,13 @@ public class Location {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Location ");
 		sb.append(this.name);
-		sb.append(" has stations: ");
+		sb.append(" (");
 		for (int i = 0; i < transportation.length; ++i) {
 			sb.append(this.transportation[i]);
 	        sb.append(" ");
 	        }
+		sb.deleteCharAt(sb.length()-1);
+		sb.append(")");
 		return sb.toString();
 	}
 
