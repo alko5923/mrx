@@ -16,7 +16,7 @@ public class Location {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Location ");
+		sb.append("loc ");
 		sb.append(this.name);
 		sb.append(" (");
 		for (int i = 0; i < transportation.length; ++i) {
