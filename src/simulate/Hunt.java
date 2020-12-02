@@ -1,5 +1,6 @@
 package simulate;
 
+import map.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -17,7 +18,10 @@ public class Hunt {
 			
 			try {
 				int numberOfPlayers = sc.nextInt();
-				System.out.println("The number of players is" + " " + numberOfPlayers);
+				System.out.println(numberOfPlayers + " players");
+				System.out.println("Creating the first location ... ");
+				Location l1 = new Location(1, "bus", "taxi", "underground");
+				System.out.println(l1);
 			}
 			
 			catch(IllegalStateException e) {
