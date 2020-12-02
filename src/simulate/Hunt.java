@@ -20,11 +20,15 @@ public class Hunt {
 				int numberOfPlayers = sc.nextInt();
 				System.out.println(numberOfPlayers + " players");
 				Location loc1 = new Location(1, "bus", "taxi", "underground");
+				Location loc9 = new Location(9, "taxi");
+				Location loc8 = new Location(8, "taxi");
 				System.out.println(loc1);
-				Location loc2 = new Location(2, "taxi");
-				System.out.println(loc2);
-				Connection con12 = new Connection(loc1, loc2, "taxi");
-				System.out.println(con12);
+				System.out.println(loc9);
+				System.out.println(loc8);
+				Connection con19 = new Connection(loc1, loc9, "taxi");
+				System.out.println(con19);
+				Connection con18 = new Connection(loc1, loc8, "taxi");
+				System.out.println(con18);
 			}
 			
 			catch(IllegalStateException e) {
