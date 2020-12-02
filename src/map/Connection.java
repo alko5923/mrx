@@ -1,7 +1,11 @@
 package map;
 
 public class Connection {
-
-	// TODO 
+	private String[] type; 
+	
+	public Connection(String... type) {
+		// TODO
+	}
+	
 	
 }
