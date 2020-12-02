@@ -13,12 +13,13 @@ public class Connection {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Connection ");
+		sb.append(this.type);
+		sb.append(" connection ");
 		sb.append("from ");
 		sb.append(this.start);
 		sb.append(" to ");
 		sb.append(this.end);
-		sb.append(" and vice versa.");
+		sb.append(" and back.");
 		return sb.toString();
 	}
 	
