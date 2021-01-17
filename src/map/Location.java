@@ -5,40 +5,36 @@ import java.util.*;
 
 public class Location {
 	private int name; 
-	private List<Location> taxiConnections = new ArrayList<Location>();
-	private List<Location> busConnections = new ArrayList<Location>();
-	private List<Location> tubeConnections = new ArrayList<Location>();
+	private List<Relation> connections = new ArrayList<Relation>();
 	
 	public Location(int name) {
 		this.name = name;
 	}
 	
 	public void addTaxiConnection(Location loc) {
-		this.taxiConnections.add(loc);
-		loc.taxiConnections.add(this);
+		final TaxiConnection taxi = new TaxiConnection(this, loc);
+		this.connections.add(taxi);
+		loc.connections.add(taxi);
 	}
 	
 	public void addBusConnection(Location loc) {
-		this.busConnections.add(loc);
-		loc.busConnections.add(this);
+		final BusConnection bus = new BusConnection(this, loc);
+		this.connections.add(bus);
+		loc.connections.add(bus);
 	}
 	
 	public void addTubeConnection(Location loc) {
-		this.tubeConnections.add(loc);
-		loc.tubeConnections.add(this);
+		final TubeConnection tube = new TubeConnection(this, loc);
+		this.connections.add(tube);
+		loc.connections.add(tube);
 	}
 	
-	public List<Location> getTaxiConnections() {
-		return this.taxiConnections;
+	public List<Relation> getConnections() {
+		return this.connections;
 	}
 	
-	public List<Location> getBusConnections() {
-		return this.busConnections;
-	}
+
 	
-	public List<Location> getTubeConnections() {
-		return this.tubeConnections;
-	}
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
