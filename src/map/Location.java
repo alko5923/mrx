@@ -2,7 +2,6 @@ package map;
 import java.util.*;
 
 
-
 public class Location {
 	private int name; 
 	private List<Relation> connections = new ArrayList<Relation>();
