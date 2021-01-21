@@ -10,6 +10,11 @@ public class Location {
 		this.name = name;
 	}
 	
+	public String getName() {
+		String name = String.valueOf(this.name);
+		return name;
+	}
+	
 	public void addTaxiConnection(Location loc) {
 		final TaxiConnection taxi = new TaxiConnection(this, loc);
 		this.connections.add(taxi);
@@ -33,12 +38,25 @@ public class Location {
 	}
 	
 
-	
-
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("loc ");
 		sb.append(this.name);
+		List<Relation> connections = this.getConnections();
+		int connections_size = connections.size();
+		if (connections_size == 0) {
+			sb.append(" has no connections.");
+			return sb.toString();
+		}
+		else {
+			sb.append(" has these connections: ");
+			for(int i = 0; i < connections.size(); i+=1) {
+				sb.append(connections.get(i).toString());
+				sb.append(", ");
+			}
+			sb.deleteCharAt(sb.length()-2);
+		}
+		
 		return sb.toString();
 	}
 	

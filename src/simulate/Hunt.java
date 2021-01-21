@@ -3,6 +3,8 @@ package simulate;
 import map.*;
 import java.util.*;
 
+// TODO: write the map and initialize it - how?
+
 public class Hunt {
 
 	static private Scanner sc = new Scanner(System.in);

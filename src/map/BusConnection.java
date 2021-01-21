@@ -14,5 +14,13 @@ public class BusConnection extends Relation {
 		return true;
 	}
 	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("bus from ");
+		sb.append(loc1.getName());
+		sb.append(" to ");
+		sb.append(loc2.getName());
+		return sb.toString();
+	}
 	
 }
