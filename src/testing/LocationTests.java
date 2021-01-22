@@ -1,14 +1,15 @@
 package testing;
 
+import simulate.*;
 import map.*;
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 class LocationTests {
-
+	
+	static Environment newMap = new Environment();
+	
 	@Test
 	void testString1() {
 		Location one = new Location(1);
@@ -140,6 +141,12 @@ class LocationTests {
 		assertEquals("loc 46 has these connections: bus from 1 to 46, tube from 46 to 1 ", fortysix.toString());
 	}
 	
-	// TODO: after writing and initializing the map, write tests for it 
 	
+	// test to see if map gets created correctly when given size 4 
+	@Test
+	void testMap1() {
+		newMap.createMap();
+		assertEquals(4, newMap.size());
+		System.out.println(newMap);
+	}
 }
