@@ -111,9 +111,24 @@ class LocationTests {
 		assertEquals(con1.get(0), con2.get(0));
 	}
 	
+	@Test 
+	// testing for equality of connections: is taxi connection btw loc 1 and 2, 
+	// equal to taxi connection btw loc 2 and 1? / NO
+	void testConnection8() {
+		Location one = new Location(1);
+		Location eight = new Location(8);
+		one.addTaxiConnection(eight);
+		eight.addTaxiConnection(one);
+		List<Relation> con1 = one.getConnections();
+		List<Relation> con2 = eight.getConnections();
+		assertEquals(2, one.getConnections().size());
+		assertEquals(2, eight.getConnections().size());
+		assertNotEquals(one.getConnections().get(0), one.getConnections().get(1));
+	}
+	
 	// tests for toString()
 	@Test
-	void testConnection8() {
+	void testConnection9() {
 		Location one = new Location(1);
 		Location eight = new Location(8);
 		Location fortysix = new Location(46);
