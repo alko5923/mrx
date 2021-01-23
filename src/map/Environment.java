@@ -12,6 +12,9 @@ public class Environment extends HashMap<Integer, Location> implements java.io.S
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("-------------------------------------------------------\n");
+		sb.append("    MAP    WITH    CONNECTIONS    \n");
+		sb.append("-------------------------------------------------------\n");
 		sb.append("Locations and their connections: \n");
 		TreeSet<Integer> locations = new TreeSet<Integer>(this.keySet());
 		Iterator<Integer> iter = locations.iterator();
@@ -22,6 +25,7 @@ public class Environment extends HashMap<Integer, Location> implements java.io.S
 			sb.append(System.lineSeparator());
 		}
 		sb.deleteCharAt(sb.length()-2);	
+		sb.append("-------------------------------------------------------\n");
 		return sb.toString();
 	}
 	

@@ -154,4 +154,5 @@ class LocationTests {
 	}
 	
 	// TODO: write system tests with input and output to test map creation 
+	// TODO: write more tests for new, refactored functions in class Hunt 
 }
