@@ -16,7 +16,7 @@ public class Hunt {
 	static Environment newMap = new Environment();
 	
 	
-	public static void readMap(Environment map) {
+	public static void loadMap(Environment map) {
 		try {
 			File file = new File("map.ser");
 			FileInputStream fileIn = new FileInputStream(file);
@@ -98,6 +98,9 @@ public class Hunt {
 		}
 	}
 	
+	// TODO(low): implement option to try again in case you input non-existing station nr. 
+	// TODO(low): implement Are you sure? after you input every connection
+	// TODO(low): implement check if destination location is a higher nr. than start location
 	
 	public static void addTaxiConnections (Environment map, Location loc, int nrConnections) {
 		try {
@@ -180,6 +183,8 @@ public class Hunt {
 		}
 	}
 	
+	//TODO(low): add check for setting a detective on non-existing station or already occupied station
+	
 	public static List<Integer> getStartPosDetectives(int numberOfDetectives) {
 		for(int i = 1; i < numberOfDetectives+1; i+=1) {
 			System.out.println("Start location of detective nr. " + i);
@@ -189,6 +194,8 @@ public class Hunt {
 		}
 		return startPosDetectives;
 	}
+	
+	// TODO(low): add check for setting a police officer on non-existing station or already occupied station 
 	
 	public static List<Integer> getStartPosPolice(int numberOfPolice) {
 		for(int i = 1; i < numberOfPolice+1; i+=1) {
@@ -200,33 +207,33 @@ public class Hunt {
 		return startPosPolice;
 	}
 	
+	public static void setupGame(Environment map) {
+		System.out.println(newMap);
+		
+		numberOfDetectives = getDetectives();
+		numberOfPolice = getPolice(numberOfDetectives);
+		
+		startPosDetectives = getStartPosDetectives(numberOfDetectives);
+		startPosPolice = getStartPosPolice(numberOfPolice);
+	}
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to The Hunt for Mr X, the codebreaker for the game Scotland Yard!");
 		
-		boolean running = true;
+		boolean setup = true;
+		boolean playing = false;
 		
-		while(running) {
+		while(setup) {
 			
 			try {
-				
-				readMap(newMap);
+				loadMap(newMap);
 				
 				if (newMap.size() > 0) {
-					System.out.println(newMap);
-					
-					numberOfDetectives = getDetectives();
-					numberOfPolice = getPolice(numberOfDetectives);
-					
-					startPosDetectives = getStartPosDetectives(numberOfDetectives);
-					startPosPolice = getStartPosPolice(numberOfPolice);
+					setupGame(newMap);
+					playing = true;
 				}
-				else {
-					running = false;
-				}
-				
 			}
-			
 			catch(IllegalStateException e) {
 				System.out.println(e.getMessage());
 			}
@@ -236,9 +243,22 @@ public class Hunt {
 			
 			finally {
 				sc.close();
+				setup = false;
 			}
-			break;
 			
+		}
+		while(playing) {
+			System.out.println("\nOK, Mr. X moves first ...\n");
+			
+			for(int i = 1; i < numberOfDetectives+1; i += 1) {
+				System.out.println("Time for detective nr." + i + " to move ... \n");
+				System.out.println("Detective nr. " + i + " please move to ... \n");
+			}
+			for(int i = 1; i < numberOfPolice+1; i += 1) {
+				System.out.println("Time for police officer nr." + i + " to move ... \n");
+				System.out.println("Police officer nr." + i + " please move to ... \n");
+			}
+			playing = false;
 		}
 
 	}
