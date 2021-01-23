@@ -1,8 +1,11 @@
 package map;
 import java.util.*;
+import java.io.IOException;
 
-
-public class Location {
+public class Location implements java.io.Serializable  {
+	
+	static final long serialVersionUID = 41L;
+	
 	private int name; 
 	private List<Relation> connections = new ArrayList<Relation>();
 	
@@ -60,5 +63,18 @@ public class Location {
 		return sb.toString();
 	}
 	
-
+	private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+        stream.writeInt(name);
+        stream.writeObject(connections);
+    }
+	
+	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        name = stream.readInt();
+        connections = (List<Relation>) stream.readObject();
+    }
+	
+	private void readObjectNoData() throws java.io.ObjectStreamException {
+        System.out.println("No data!");
+    }
+	
 }

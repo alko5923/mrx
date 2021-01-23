@@ -1,6 +1,5 @@
 package testing;
 
-import simulate.*;
 import map.*;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,8 +119,6 @@ class LocationTests {
 		Location eight = new Location(8);
 		one.addTaxiConnection(eight);
 		eight.addTaxiConnection(one);
-		List<Relation> con1 = one.getConnections();
-		List<Relation> con2 = eight.getConnections();
 		assertEquals(2, one.getConnections().size());
 		assertEquals(2, eight.getConnections().size());
 		assertNotEquals(one.getConnections().get(0), one.getConnections().get(1));
@@ -142,11 +139,19 @@ class LocationTests {
 	}
 	
 	
-	// test to see if map gets created correctly when given size 4 
+	// test to see if map gets created correctly 
 	@Test
 	void testMap1() {
-		newMap.createMap();
+		Location one = new Location(1);
+		Location two = new Location(2);
+		Location three = new Location(3);
+		Location four = new Location(4);
+		newMap.put(1, one);
+		newMap.put(2, two);
+		newMap.put(3, three);
+		newMap.put(4, four);
 		assertEquals(4, newMap.size());
-		System.out.println(newMap);
 	}
+	
+	// TODO: write system tests with input and output to test map creation 
 }

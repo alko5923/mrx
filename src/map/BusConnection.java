@@ -1,6 +1,8 @@
 package map;
 
-public class BusConnection extends Relation {
+public class BusConnection extends Relation  {
+	
+	static final long serialVersionUID = 41L;
 	
 	Location loc1;
 	Location loc2;
