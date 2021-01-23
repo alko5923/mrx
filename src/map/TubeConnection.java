@@ -4,8 +4,8 @@ public class TubeConnection extends Relation {
 	
 	private static final long serialVersionUID = 4L;
 	
-	Location loc1;
-	Location loc2;
+	private Location loc1;
+	private Location loc2;
 	
 	public TubeConnection(Location loc1, Location loc2) {
 		this.loc1 = loc1;

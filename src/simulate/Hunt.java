@@ -13,6 +13,7 @@ public class Hunt {
 	static private int numberOfPolice;
 	static private List<Integer> startPosDetectives = new ArrayList<Integer>();
 	static private List<Integer> startPosPolice = new ArrayList<Integer>();
+	static private List<Detective> listDetectives = new ArrayList<Detective>();
 	static Environment newMap = new Environment();
 	
 	
@@ -160,9 +161,23 @@ public class Hunt {
 			}
 			else {
 				System.out.println(numberOfDetectives + " detectives");
+				for (int number = 1; number < numberOfDetectives+1; number+=1) {
+					System.out.println("Name of detective nr. " + number + ": ");
+					String nameDetective = sc.next(); 
+					createDetective(number, nameDetective);
+				}
 				return numberOfDetectives;
 			}
 		}
+	}
+	
+	// TODO(high): refactor Detective class, so that every detective save a list of all traversed Relations
+	// refactor in Hunt in terms of global lists and variables 
+	
+	public static Detective createDetective(int number, String name) {
+		Detective newDetective = new Detective(number, name);
+		listDetectives.add(newDetective);
+		return newDetective;
 	}
 	
 	public static int getPolice(int numberOfDetectives) {
@@ -186,11 +201,10 @@ public class Hunt {
 	//TODO(low): add check for setting a detective on non-existing station or already occupied station
 	
 	public static List<Integer> getStartPosDetectives(int numberOfDetectives) {
-		for(int i = 1; i < numberOfDetectives+1; i+=1) {
-			System.out.println("Start location of detective nr. " + i);
+		for(int i = 0; i < numberOfDetectives; i+=1) {
+			System.out.println("Please give start location of detective " + listDetectives.get(i).getName());
 			int detectiveStartPosition = sc.nextInt();
 			startPosDetectives.add(detectiveStartPosition);
-			System.out.println("Start location of detective nr. " + i + ": " + detectiveStartPosition);
 		}
 		return startPosDetectives;
 	}
@@ -218,10 +232,16 @@ public class Hunt {
 	}
 	
 	public static void setupDemo(Environment map) {
-		System.out.println(newMap);
 		
+		System.out.println(newMap);
+	
 		numberOfDetectives = getDetectives();
 		startPosDetectives = getStartPosDetectives(numberOfDetectives);
+		
+		for (int i = 0; i < listDetectives.size(); i+=1) {
+			System.out.println(listDetectives.get(i));
+		}
+		
 	}
 	
 	public static void main(String[] args) {
@@ -260,10 +280,12 @@ public class Hunt {
 				System.out.println("Time for detective nr." + i + " to move ... \n");
 				System.out.println("Detective nr. " + i + " please move to ... \n");
 			}
+			/*
 			for(int i = 1; i < numberOfPolice+1; i += 1) {
 				System.out.println("Time for police officer nr." + i + " to move ... \n");
 				System.out.println("Police officer nr." + i + " please move to ... \n");
 			}
+			*/
 			playing = false;
 		}
 

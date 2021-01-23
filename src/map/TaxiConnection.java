@@ -4,8 +4,8 @@ public class TaxiConnection extends Relation {
 	
 	private static final long serialVersionUID = 3L;
 	
-	Location loc1;
-	Location loc2;
+	private Location loc1;
+	private Location loc2;
 	
 	public TaxiConnection(Location loc1, Location loc2) {
 		this.loc1 = loc1;

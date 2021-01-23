@@ -4,8 +4,8 @@ public class BusConnection extends Relation  {
 	
 	private static final long serialVersionUID = 5L;
 	
-	Location loc1;
-	Location loc2;
+	private Location loc1;
+	private Location loc2;
 	
 	public BusConnection(Location loc1, Location loc2) {
 		this.loc1 = loc1;
