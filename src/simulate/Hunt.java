@@ -5,7 +5,6 @@ import map.*;
 import java.io.*;
 import java.util.*;
 
-// TODO: save the initialized map to a file, so you don't have to initialize it every time you run the program 
 
 public class Hunt {
 
@@ -28,7 +27,12 @@ public class Hunt {
 		catch (FileNotFoundException m) {
 			System.out.println("File not found, proceeding to create map ...");
 			createMap(newMap);
-			populateMap(newMap);
+			if (newMap.size() > 0) {
+				populateMap(newMap);
+			}
+			else {
+				return;
+			}
 		}
 		catch (IOException m) {
 			m.printStackTrace();
@@ -46,6 +50,7 @@ public class Hunt {
 		int nrLocations = sc.nextInt();
 		if (nrLocations == 0) {
 			System.out.println("OK, goodbye then!");
+			return;
 		}
 		else {
 			for (int i = 1; i < nrLocations+1; i+=1) {
@@ -199,18 +204,27 @@ public class Hunt {
 	public static void main(String[] args) {
 		System.out.println("Welcome to The Hunt for Mr X, the codebreaker for the game Scotland Yard!");
 		
-		while(true) {
+		boolean running = true;
+		
+		while(running) {
 			
 			try {
 				
 				readMap(newMap);
-				System.out.println(newMap);
 				
-				numberOfDetectives = getDetectives();
-				numberOfPolice = getPolice(numberOfDetectives);
+				if (newMap.size() > 0) {
+					System.out.println(newMap);
+					
+					numberOfDetectives = getDetectives();
+					numberOfPolice = getPolice(numberOfDetectives);
+					
+					startPosDetectives = getStartPosDetectives(numberOfDetectives);
+					startPosPolice = getStartPosPolice(numberOfPolice);
+				}
+				else {
+					running = false;
+				}
 				
-				startPosDetectives = getStartPosDetectives(numberOfDetectives);
-				startPosPolice = getStartPosPolice(numberOfPolice);
 			}
 			
 			catch(IllegalStateException e) {
