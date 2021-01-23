@@ -217,6 +217,12 @@ public class Hunt {
 		startPosPolice = getStartPosPolice(numberOfPolice);
 	}
 	
+	public static void setupDemo(Environment map) {
+		System.out.println(newMap);
+		
+		numberOfDetectives = getDetectives();
+		startPosDetectives = getStartPosDetectives(numberOfDetectives);
+	}
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to The Hunt for Mr X, the codebreaker for the game Scotland Yard!");
@@ -230,7 +236,7 @@ public class Hunt {
 				loadMap(newMap);
 				
 				if (newMap.size() > 0) {
-					setupGame(newMap);
+					setupDemo(newMap);
 					playing = true;
 				}
 			}
@@ -245,8 +251,8 @@ public class Hunt {
 				sc.close();
 				setup = false;
 			}
-			
 		}
+		
 		while(playing) {
 			System.out.println("\nOK, Mr. X moves first ...\n");
 			
