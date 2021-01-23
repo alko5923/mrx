@@ -75,6 +75,10 @@ public class Hunt {
 			int tubeNr = sc.nextInt();
 			addTubeConnections(newMap, loc, tubeNr);
 		}
+		writeMap(newMap);
+	}
+	
+	public static void writeMap(Environment map) {
 		try {
 			File file = new File("map.ser");  
 			FileOutputStream f = new FileOutputStream(file);  
@@ -87,7 +91,6 @@ public class Hunt {
 			m.printStackTrace();
 			return;
 		}
-
 	}
 	
 	
