@@ -205,7 +205,6 @@ public class Hunt {
 				
 				readMap(newMap);
 				System.out.println(newMap);
-				System.out.println(newMap.size());
 				
 				numberOfDetectives = getDetectives();
 				numberOfPolice = getPolice(numberOfDetectives);

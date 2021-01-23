@@ -2,7 +2,7 @@ package map;
 
 public class TaxiConnection extends Relation {
 	
-	static final long serialVersionUID = 41L;
+	private static final long serialVersionUID = 3L;
 	
 	Location loc1;
 	Location loc2;

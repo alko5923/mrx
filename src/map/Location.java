@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Location implements java.io.Serializable  {
 	
-	static final long serialVersionUID = 41L;
+	private static final long serialVersionUID = 1L;
 	
 	private int name; 
 	private List<Relation> connections = new ArrayList<Relation>();

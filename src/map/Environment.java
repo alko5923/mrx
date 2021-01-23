@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Environment extends HashMap<Integer, Location> implements java.io.Serializable {
 	
-	static final long serialVersionUID = 41L;
+	private static final long serialVersionUID = 6L;
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

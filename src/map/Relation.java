@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Relation implements java.io.Serializable  {
 	
-	static final long serialVersionUID = 41L;
+	private static final long serialVersionUID = 2L;
 	
 	public boolean isTaxiConnection() {
 		return false;

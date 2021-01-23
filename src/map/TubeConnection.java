@@ -2,7 +2,7 @@ package map;
 
 public class TubeConnection extends Relation {
 	
-	static final long serialVersionUID = 41L;
+	private static final long serialVersionUID = 4L;
 	
 	Location loc1;
 	Location loc2;
