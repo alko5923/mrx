@@ -1,13 +1,13 @@
 package simulate;
 
-import java.util.Scanner;
+import java.util.*;
 import map.*;
 
 public class Hunter {
 	
 	private Scanner sc = new Scanner(System.in);
 	private Setup setup = new Setup();
-	
+	private List<Relation> possibleXMoves = new ArrayList();
 	
 	public Setup getSetup() {
 		return this.setup;
@@ -50,6 +50,21 @@ public class Hunter {
 	public Relation calculateBestMove(int detectiveIndex) {
 		//Location start = setup.getMap().getMap().get(1);
 		Relation bestMove = setup.getMap().getMap().get(1).getConnections().get(0);
+
+		handleStatistics(bestMove, detectiveIndex);
+		return bestMove;
+	}
+	
+	
+	public boolean noMovesLeftCheck() {
+		if(setup.getMrX().getListPossibleMoves().size() == 0) {
+			System.out.println(" *** Mr. X GOT CAUGHT! ***\n");
+			return true;
+		}
+		return false;
+	}
+	
+	public void handleStatistics(Relation bestMove, int detectiveIndex) {
 		
 		Detective detective = setup.getListDetectives().get(detectiveIndex);
 		
@@ -66,9 +81,7 @@ public class Hunter {
 			setup.getMrX().addTubeTicket();
 		}
 		
-		detective.getTravelList().add(bestMove);
-		
-		return bestMove;
+		detective.getTravelList().add(bestMove);	
 	}
 	
 	public void moveDetectives() {
@@ -83,9 +96,20 @@ public class Hunter {
 		this.getSetup().getMrX().addToReveals(mrXLocation);
 	}
 	
-	public void move() {
+	public void mrXPossibleMoves() {
+		// check what locations in hashmap are not occupied
+		// add all Relations of those locations
+		// make an occupied function for Locations? 
+		
+	}
+	
+	public boolean move() {
+		if(noMovesLeftCheck() == true) {
+			return false;
+		}
 		moveMrX();
 		moveDetectives();
+		return true;
 	}
 	
 	public String toString() {

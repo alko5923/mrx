@@ -12,11 +12,31 @@ public class MrX {
 	private int tubeTicketsAvailable;
 	private List<String> ticketsUsed = new ArrayList<String>();
 	private List<Location> mrXReveals = new ArrayList<Location>();
+	private List<Location> listPossibleLocations = new ArrayList<Location>();
+	private List<Relation> listPossibleMoves = new ArrayList<Relation>();
 	private Map map;
 	
 	public MrX(Map newMap) {
 		this.map = newMap;
 	}
+	
+	public List<Location> getListPossibleLocations() {
+		return listPossibleLocations;
+	}
+
+	public void setListPossibleLocations(List<Location> listPossibleLocations) {
+		this.listPossibleLocations = listPossibleLocations;
+	}
+	
+	public List<Relation> getListPossibleMoves() {
+		return listPossibleMoves;
+	}
+
+	public void setListPossibleMoves(List<Relation> listPossibleMoves) {
+		this.listPossibleMoves = listPossibleMoves;
+	}
+
+	
 	
 	public void addToReveals(int location) throws LocationNotFoundException {
 		if(map.getMap().containsKey(location)) {

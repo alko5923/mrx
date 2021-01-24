@@ -31,7 +31,10 @@ public class Hunt {
 			
 			System.out.println(" ***** Move nr. " + (step+1) + " *****\n");
 			
-			hunter.move();
+			boolean move = hunter.move();
+			if(move == false) {
+				break;
+			}
 			
 			if (step == 2 || step == 7 || step == 12 || step == 17 || step == 23) {
 				System.out.println("\nMr. X, reveal yourself!\n");
