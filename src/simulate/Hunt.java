@@ -20,6 +20,7 @@ public class Hunt {
 		try 
 		{
 			hunter.setupGame();
+			System.out.println(hunter);
 		}
 		catch (EmptyMapException m){
 			System.err.println("Empty map! " + m.getMessage());
@@ -29,49 +30,15 @@ public class Hunt {
 		for(int step = 0; step < moves; step+=1) {
 			
 			System.out.println(" ***** Move nr. " + (step+1) + " *****\n");
-			hunter.moveMrX();
 			
-			if (step == 2) {
-				System.out.println("Mr. X, reveal yourself!\n");
+			hunter.move();
+			
+			if (step == 2 || step == 7 || step == 12 || step == 17 || step == 23) {
+				System.out.println("\nMr. X, reveal yourself!\n");
 				System.out.println("Where is Mr. X at the moment?\n");
 				mrXLocation = sc.nextInt();
-				hunter.getSetup().getMrX().addToReveals(mrXLocation);
-				System.out.println("Current location of Mr. X: " + mrXLocation + "\n");
+				hunter.reveal(mrXLocation);
 			}
-			
-			if (step == 7) {
-				System.out.println("Mr. X, reveal yourself!\n");
-				System.out.println("Where is Mr. X at the moment?\n");
-				mrXLocation = sc.nextInt();
-				hunter.getSetup().getMrX().addToReveals(mrXLocation);
-				System.out.println("Current location of Mr. X: " + mrXLocation + "\n");
-			}
-			
-			if (step == 12) {
-				System.out.println("Mr. X, reveal yourself!\n");
-				System.out.println("Where is Mr. X at the moment?\n");
-				mrXLocation = sc.nextInt();
-				hunter.getSetup().getMrX().addToReveals(mrXLocation);
-				System.out.println("Current location of Mr. X: " + mrXLocation + "\n");
-			}
-			
-			if (step == 17) {
-				System.out.println("Mr. X, reveal yourself!\n");
-				System.out.println("Where is Mr. X at the moment?\n");
-				mrXLocation = sc.nextInt();
-				hunter.getSetup().getMrX().addToReveals(mrXLocation);
-				System.out.println("Current location of Mr. X: " + mrXLocation + "\n");
-			}
-			
-			if (step == 23) {
-				System.out.println("Mr. X, reveal yourself!\n");
-				System.out.println("Where is Mr. X at the moment?\n");
-				mrXLocation = sc.nextInt();
-				hunter.getSetup().getMrX().addToReveals(mrXLocation);
-				System.out.println("Current location of Mr. X: " + mrXLocation + "\n");
-			}
-			
-			hunter.moveDetectives();
 			
 			System.out.println(hunter);
 		}

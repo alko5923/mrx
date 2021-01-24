@@ -9,16 +9,15 @@ import map.*;
 public class Setup {
 	
 	private Scanner sc = new Scanner(System.in);
+	private Map newMap = new Map();
 	private int numberOfDetectives;
 	private int numberOfPolice;
-	//static private List<Integer> startPosDetectives = new ArrayList<Integer>();
+	private MrX mrX = new MrX(newMap);	
+	private List<Detective> listDetectives = new ArrayList<Detective>();
+
 	// TODO: remove startPosPolice once you have refactored code
 	private List<Integer> startPosPolice = new ArrayList<Integer>();
-	private List<Detective> listDetectives = new ArrayList<Detective>();
-	private Map newMap = new Map();
-	private MrX mrX = new MrX(newMap);
 	
-	// TODO: create class MrX and create an instance here?
 	
 	public MrX getMrX() {
 		return mrX;
@@ -36,8 +35,7 @@ public class Setup {
 		return this.listDetectives;
 	}
 	
-	
-	public int getDetectives() {
+	public int setupDetectives() {
 		while(true) {
 			System.out.println("Please enter the number of detectives: ");
 			numberOfDetectives = sc.nextInt();
@@ -50,13 +48,21 @@ public class Setup {
 				continue;
 			}
 			else {
-				System.out.println(numberOfDetectives + " detectives");
 				for (int number = 1; number < numberOfDetectives+1; number+=1) {
 					System.out.println("Name of detective nr. " + number + ": ");
 					String nameDetective = sc.next();
+					
 					System.out.println("Please give start location of detective " + nameDetective + ":");
 					int startPos = sc.nextInt();
-					createDetective(number, nameDetective, startPos);
+					
+					System.out.println("How many taxi tickets does the detective have?");
+					int taxiTickets = sc.nextInt();
+					System.out.println("How many bus tickets does the detective have?");
+					int busTickets = sc.nextInt();
+					System.out.println("How many tube tickets does the detective have?");
+					int tubeTickets = sc.nextInt();
+					
+					createDetective(number, nameDetective, startPos, taxiTickets, busTickets, tubeTickets);
 				}
 				return numberOfDetectives;
 			}
@@ -65,13 +71,13 @@ public class Setup {
 
 	
 	//TODO(low): add check for setting a detective on non-existing station or already occupied station
-	public Detective createDetective(int number, String name, int startPosition) {
-		Detective newDetective = new Detective(number, name, startPosition);
+	public Detective createDetective(int number, String name, int startPosition, int taxiTickets, int busTickets, int tubeTickets) {
+		Detective newDetective = new Detective(number, name, startPosition, taxiTickets, busTickets, tubeTickets);
 		listDetectives.add(newDetective);
 		return newDetective;
 	}
 	
-	public int getPolice(int numberOfDetectives) {
+	public int setupPolice(int numberOfDetectives) {
 		if (numberOfDetectives == 2) {
 			numberOfPolice = 2;
 			System.out.println("You get 2 police officers as backup help.");
@@ -90,10 +96,10 @@ public class Setup {
 	}
 	
 	
-	// TODO(low): refactor this into one function (getPolice()) and 
+	// TODO(low): refactor this into one function (setupPolice()) and 
 	// add check for setting a police officer on non-existing station or already occupied station 
 	
-	public List<Integer> getStartPosPolice(int numberOfPolice) {
+	public List<Integer> setupStartPosPolice(int numberOfPolice) {
 		for(int i = 1; i < numberOfPolice+1; i+=1) {
 			System.out.println("Start location of police officer nr. " + i);
 			int policeStartPosition = sc.nextInt();
@@ -107,10 +113,10 @@ public class Setup {
 	public void setupFullGame() {
 		System.out.println(newMap.getMap());
 		
-		numberOfDetectives = getDetectives();
-		numberOfPolice = getPolice(numberOfDetectives);
+		numberOfDetectives = setupDetectives();
+		numberOfPolice = setupPolice(numberOfDetectives);
 		
-		startPosPolice = getStartPosPolice(numberOfPolice);
+		startPosPolice = setupStartPosPolice(numberOfPolice);
 	}
 	
 	public void setupDemo() throws EmptyMapException {
@@ -118,12 +124,12 @@ public class Setup {
 		newMap.loadMap();
 		System.out.println(newMap.getMap());
 	
-		numberOfDetectives = getDetectives();
-		
+		numberOfDetectives = setupDetectives();
+		/*
 		for (int i = 0; i < listDetectives.size(); i+=1) {
 			System.out.println(listDetectives.get(i));
 		}
-		
+		*/
 	}
 	
 	

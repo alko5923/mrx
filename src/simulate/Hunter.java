@@ -1,9 +1,6 @@
 package simulate;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-
 import map.*;
 
 public class Hunter {
@@ -11,8 +8,6 @@ public class Hunter {
 	private Scanner sc = new Scanner(System.in);
 	private Setup setup = new Setup();
 	
-	//private List<String> ticketsUsed = new ArrayList<String>();
-	//private List<Location> mrXReveals = new ArrayList<Location>();
 	
 	public Setup getSetup() {
 		return this.setup;
@@ -27,42 +22,82 @@ public class Hunter {
 		boolean waitingForMrX = true;
 		
 		while(waitingForMrX) {
-			System.out.println("\nPress x when Mr. X has moved ...\n");
+			System.out.println("Press x when Mr. X has moved ...\n");
 			String answer = sc.next();
 			if(answer.equals("x")) {
 				waitingForMrX = false;
-				System.out.println("Mr X has moved!\n");
+				System.out.println("\nMr X has moved!\n");
 			}
 		}
 		System.out.println("What ticket has Mr. X used? \n");
 		String ticketUsed = sc.next();
 		this.setup.getMrX().addToUsedTickets(ticketUsed);
+		removeXticket(ticketUsed);
 	}
 	
-	public Relation calculateBestMove(Detective detective) {
+	public void removeXticket(String ticket) {
+		if (ticket.equals("taxi")) {
+			setup.getMrX().removeXTaxiTicket();
+		}
+		else if (ticket.equals("bus")) {
+			setup.getMrX().removeXBusTicket();
+		}
+		else if (ticket.equals("tube")) {
+			setup.getMrX().removeXTubeTicket();
+		}
+	}
+	
+	public Relation calculateBestMove(int detectiveIndex) {
+		//Location start = setup.getMap().getMap().get(1);
 		Relation bestMove = setup.getMap().getMap().get(1).getConnections().get(0);
+		
+		Detective detective = setup.getListDetectives().get(detectiveIndex);
+		
+		if(bestMove.isTaxiConnection()) {
+			detective.removeDetectiveTaxiTicket();
+			setup.getMrX().addTaxiTicket();
+		}
+		else if(bestMove.isBusConnection()) {
+			detective.removeDetectiveBusTicket();
+			setup.getMrX().addBusTicket();
+		}
+		else if(bestMove.isTubeConnection()) {
+			detective.removeDetectiveTubeTicket();
+			setup.getMrX().addTubeTicket();
+		}
+		
+		detective.getTravelList().add(bestMove);
 		
 		return bestMove;
 	}
 	
 	public void moveDetectives() {
 		for(int i = 0; i < setup.getNrOfDetectives(); i += 1) {
-			Detective detective = setup.getListDetectives().get(i);
-			Relation bestMove = calculateBestMove(detective);
-			System.out.println("Detective " + setup.getListDetectives().get(i).getName()
-					+ " please take " + bestMove + "\n");
+			Relation bestMove = calculateBestMove(i);
+			System.out.println("\nDetective " + setup.getListDetectives().get(i).getName()
+					+ " please take " + bestMove);
 		}
+	}
+	
+	public void reveal(int mrXLocation) throws LocationNotFoundException {
+		this.getSetup().getMrX().addToReveals(mrXLocation);
+	}
+	
+	public void move() {
+		moveMrX();
+		moveDetectives();
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("The current state of affairs: \n");
+		sb.append("---------------------------------\n");
+		sb.append("THE CURRENT STATE OF AFFAIRS\n");
+		sb.append("---------------------------------\n");
 		// print all detectives
 		for (int i = 0; i < setup.getNrOfDetectives(); i+=1) {
 			sb.append(setup.getListDetectives().get(i).toString());
 		}
-		// TODO: refactor this once you have created a Mr. X class 
-		sb.append(" === Mr. X === ");
+		
 		sb.append(setup.getMrX().toString());
 		return sb.toString();
 	}

@@ -9,39 +9,63 @@ public class Detective {
 	private String name;
 	private int startPosition;
 	private List<Relation> travelList = new ArrayList<Relation>();
-	private List<String> availableTickets = new ArrayList<String>();
+	private int taxiTicketsAvailable;
+	private int busTicketsAvailable;
+	private int tubeTicketsAvailable;
 	
-	public Detective(int number, String name, int startPosition) {
+	public Detective(int number, String name, int startPosition, int taxiTickets, int busTickets, int tubeTickets) {
 		this.number = number;
 		this.name = name;
 		this.startPosition = startPosition;
+		this.taxiTicketsAvailable = taxiTickets;
+		this.busTicketsAvailable = busTickets;
+		this.tubeTicketsAvailable = tubeTickets;
 	}
 	
 	public String getName() {
 		return this.name;
 	}
 	
+	public int getNumber() {
+		return this.number;
+	}
+	
+	public List<Relation> getTravelList() {
+		return travelList;
+	}
+	
+	public void removeDetectiveTaxiTicket() {
+		taxiTicketsAvailable -= 1;
+	}
+	
+	public void removeDetectiveBusTicket() {
+		busTicketsAvailable -= 1;
+	}
+	
+	public void removeDetectiveTubeTicket() {
+		tubeTicketsAvailable -= 1;
+	}
+	
 	public String toString() {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("---------------------------------\n");
-		sb.append("Detective info: \n");
-		sb.append("Detective nr. " + number + "\n");
-		sb.append("Detective name: " + name + "\n");
-		sb.append("Detective start position: " + startPosition + "\n");
-		sb.append("Detective travel list: [ "); 
+		sb.append("DETECTIVE " + name + " INFO\n");
+		sb.append("---------------------------------\n");
+		sb.append("Start position: " + startPosition + "\n");
+		sb.append("Travel list: [ "); 
 		for (int i = 0; i < travelList.size(); i+=1 ) {
 			sb.append(travelList.get(i).toString());
 			sb.append(", ");
 		}
 		sb.append(" ]\n");
-		sb.append("Available tickets: [ "); 
-		for (int i = 0; i < availableTickets.size(); i+=1 ) {
-			sb.append(availableTickets.get(i).toString());
-			sb.append(", ");
-		}
-		sb.append(" ]\n");
-		sb.append("---------------------------------\n");
+		sb.append("Taxi tickets available = "); 
+		sb.append(taxiTicketsAvailable);
+		sb.append("\nBus tickets available = "); 
+		sb.append(busTicketsAvailable);
+		sb.append("\nTube tickets available = "); 
+		sb.append(tubeTicketsAvailable);
+		sb.append("\n---------------------------------\n");
 		return sb.toString();
 	}
 	
