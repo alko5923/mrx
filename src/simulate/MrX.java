@@ -2,6 +2,7 @@ package simulate;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import map.*;
 
@@ -12,32 +13,24 @@ public class MrX {
 	private int tubeTicketsAvailable;
 	private List<String> ticketsUsed = new ArrayList<String>();
 	private List<Location> mrXReveals = new ArrayList<Location>();
-	private List<Location> listPossibleLocations = new ArrayList<Location>();
-	private List<Relation> listPossibleMoves = new ArrayList<Relation>();
+	// a hashmap storing all possible locations of Mr. X (key) with a list of all possible moves
+	// from those locations (value) 
+	// TODO: refactor this hashmap into its own class, MoveTracker? 
+	private HashMap<Location, List<Relation>> possibleXMovesLocations = new HashMap<Location, List<Relation>>();
 	private Map map;
 	
 	public MrX(Map newMap) {
 		this.map = newMap;
 	}
 	
-	public List<Location> getListPossibleLocations() {
-		return listPossibleLocations;
+	public HashMap<Location, List<Relation>> getPossibleXMovesLocations() {
+		return possibleXMovesLocations;
 	}
 
-	public void setListPossibleLocations(List<Location> listPossibleLocations) {
-		this.listPossibleLocations = listPossibleLocations;
+	public void setPossibleXMovesLocations(HashMap<Location, List<Relation>> possibleXMovesLocations) {
+		this.possibleXMovesLocations = possibleXMovesLocations;
 	}
-	
-	public List<Relation> getListPossibleMoves() {
-		return listPossibleMoves;
-	}
-
-	public void setListPossibleMoves(List<Relation> listPossibleMoves) {
-		this.listPossibleMoves = listPossibleMoves;
-	}
-
-	
-	
+		
 	public void addToReveals(int location) throws LocationNotFoundException {
 		if(map.getMap().containsKey(location)) {
 			Location loc = map.getMap().get(location);
@@ -109,5 +102,5 @@ public class MrX {
 			
 			return sb.toString();
 		}
-	
+
 }

@@ -7,7 +7,7 @@ public class Hunter {
 	
 	private Scanner sc = new Scanner(System.in);
 	private Setup setup = new Setup();
-	private List<Relation> possibleXMoves = new ArrayList();
+	
 	
 	public Setup getSetup() {
 		return this.setup;
@@ -57,7 +57,7 @@ public class Hunter {
 	
 	
 	public boolean noMovesLeftCheck() {
-		if(setup.getMrX().getListPossibleMoves().size() == 0) {
+		if(setup.getMrX().getPossibleXMovesLocations().size() == 0) {
 			System.out.println(" *** Mr. X GOT CAUGHT! ***\n");
 			return true;
 		}
