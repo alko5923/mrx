@@ -10,6 +10,8 @@ public class Environment extends HashMap<Integer, Location> implements java.io.S
 	
 	private static final long serialVersionUID = 6L;
 	
+	
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-------------------------------------------------------\n");
@@ -19,8 +21,8 @@ public class Environment extends HashMap<Integer, Location> implements java.io.S
 		TreeSet<Integer> locations = new TreeSet<Integer>(this.keySet());
 		Iterator<Integer> iter = locations.iterator();
 		while(iter.hasNext()) {
-			Integer loc = iter.next();
-			sb.append(this.get(loc));
+			int loc = iter.next();
+			sb.append(this.get(loc).toString());
 			sb.append("; ");
 			sb.append(System.lineSeparator());
 		}

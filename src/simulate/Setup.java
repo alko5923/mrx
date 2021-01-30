@@ -74,9 +74,11 @@ public class Setup {
 	public Detective createDetective(int number, String name, int startPosition, int taxiTickets, int busTickets, int tubeTickets) {
 		Detective newDetective = new Detective(number, name, startPosition, taxiTickets, busTickets, tubeTickets);
 		listDetectives.add(newDetective);
+		newMap.getLocation(startPosition).occupyLocation();
 		return newDetective;
 	}
 	
+	// TODO: remember to occupy start locations of police too! 
 	public int setupPolice(int numberOfDetectives) {
 		if (numberOfDetectives == 2) {
 			numberOfPolice = 2;

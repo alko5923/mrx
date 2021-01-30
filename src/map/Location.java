@@ -8,14 +8,24 @@ public class Location implements java.io.Serializable  {
 	
 	private int name; 
 	private List<Relation> connections = new ArrayList<Relation>();
+	private boolean occupied;
 	
 	public Location(int name) {
 		this.name = name;
+		this.occupied = false;
 	}
 	
 	public String getName() {
 		String name = String.valueOf(this.name);
 		return name;
+	}
+	
+	public void occupyLocation() {
+		this.occupied = true;
+	}
+	
+	public boolean isOccupied() {
+		return this.occupied;
 	}
 	
 	public void addTaxiConnection(Location loc) {
@@ -59,6 +69,7 @@ public class Location implements java.io.Serializable  {
 			}
 			sb.deleteCharAt(sb.length()-2);
 		}
+		sb.append("\noccupied: " + occupied);
 		
 		return sb.toString();
 	}

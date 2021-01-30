@@ -1,6 +1,9 @@
 package testing;
 
 import map.*;
+import map.Map;
+import simulate.*;
+
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -133,9 +136,9 @@ class LocationTests {
 		one.addTaxiConnection(eight);
 		one.addBusConnection(fortysix);
 		fortysix.addTubeConnection(one);
-		assertEquals("loc 1 has these connections: taxi from 1 to 8, bus from 1 to 46, tube from 46 to 1 ", one.toString());
-		assertEquals("loc 8 has these connections: taxi from 1 to 8 ", eight.toString());
-		assertEquals("loc 46 has these connections: bus from 1 to 46, tube from 46 to 1 ", fortysix.toString());
+		assertEquals("loc 1 has these connections: taxi from 1 to 8, bus from 1 to 46, tube from 46 to 1 \noccupied: false", one.toString());
+		assertEquals("loc 8 has these connections: taxi from 1 to 8 \noccupied: false", eight.toString());
+		assertEquals("loc 46 has these connections: bus from 1 to 46, tube from 46 to 1 \noccupied: false", fortysix.toString());
 	}
 	
 	
@@ -153,6 +156,30 @@ class LocationTests {
 		assertEquals(4, newMap.size());
 	}
 	
-	// TODO: write system tests with input and output to test map creation 
-	// TODO: write more tests for new, refactored functions in class Hunt 
+	// TODO(low): write system tests with input and output to test map creation 
+	// TODO(low): write more tests for new, refactored functions in class Hunt
+	
+	// tests to see if stations get occupied correctly 
+	
+	/*
+	@Test
+	void testOccupy1() {
+		Map m = new Map();
+		Location one = new Location(1);
+		Location two = new Location(2);
+		Location three = new Location(3);
+		m.getMap().put(1, one);
+		m.getMap().put(2, two);
+		m.getMap().put(3, three);
+		one.addTaxiConnection(two);
+		one.addTaxiConnection(three);
+		Setup s = new Setup();
+		System.out.println(m.getMap().toString());
+		Detective det1 = s.createDetective(5, "Azi", 2, 1, 1, 1);
+		
+		assertEquals(false, one.isOccupied());
+		assertEquals(true, two.isOccupied());
+		assertEquals(false, three.isOccupied());
+	}
+	*/
 }

@@ -47,6 +47,8 @@ public class Hunter {
 		}
 	}
 	
+	//TODO(high): implement the Mr. X tracker 
+	
 	public Relation calculateBestMove(int detectiveIndex) {
 		//Location start = setup.getMap().getMap().get(1);
 		Relation bestMove = setup.getMap().getMap().get(1).getConnections().get(0);
@@ -57,7 +59,7 @@ public class Hunter {
 	
 	
 	public boolean noMovesLeftCheck() {
-		if(setup.getMrX().getPossibleXMovesLocations().size() == 0) {
+		if(setup.getMrX().getTracker().size() == 0) {
 			System.out.println(" *** Mr. X GOT CAUGHT! ***\n");
 			return true;
 		}
@@ -99,7 +101,6 @@ public class Hunter {
 	public void mrXPossibleMoves() {
 		// check what locations in hashmap are not occupied
 		// add all Relations of those locations
-		// make an occupied function for Locations? 
 		
 	}
 	
@@ -123,6 +124,7 @@ public class Hunter {
 		}
 		
 		sb.append(setup.getMrX().toString());
+		sb.append(setup.getMap().getMap().toString());
 		return sb.toString();
 	}
 	

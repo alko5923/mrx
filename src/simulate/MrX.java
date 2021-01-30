@@ -13,22 +13,19 @@ public class MrX {
 	private int tubeTicketsAvailable;
 	private List<String> ticketsUsed = new ArrayList<String>();
 	private List<Location> mrXReveals = new ArrayList<Location>();
-	// a hashmap storing all possible locations of Mr. X (key) with a list of all possible moves
-	// from those locations (value) 
-	// TODO: refactor this hashmap into its own class, MoveTracker? 
-	private HashMap<Location, List<Relation>> possibleXMovesLocations = new HashMap<Location, List<Relation>>();
+	private MrXTracker tracker = new MrXTracker();
 	private Map map;
 	
 	public MrX(Map newMap) {
 		this.map = newMap;
 	}
 	
-	public HashMap<Location, List<Relation>> getPossibleXMovesLocations() {
-		return possibleXMovesLocations;
+	public MrXTracker getTracker() {
+		return tracker;
 	}
 
-	public void setPossibleXMovesLocations(HashMap<Location, List<Relation>> possibleXMovesLocations) {
-		this.possibleXMovesLocations = possibleXMovesLocations;
+	public void setTracker(MrXTracker tracker) {
+		this.tracker = tracker;
 	}
 		
 	public void addToReveals(int location) throws LocationNotFoundException {
@@ -97,6 +94,7 @@ public class MrX {
 			}
 			sb.append(" ]\n");
 			
+			sb.append(tracker.toString());
 			
 			sb.append("---------------------------------\n");
 			

@@ -18,6 +18,10 @@ public class Map {
 		return this.newMap;
 	}
 	
+	public Location getLocation(int loc) {
+		return (this.getMap().get(loc));
+	}
+	
 	public Environment loadMap() throws EmptyMapException {
 		try {
 			File file = new File("map.ser");
