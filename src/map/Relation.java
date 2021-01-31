@@ -6,6 +6,14 @@ public class Relation implements java.io.Serializable  {
 	
 	private static final long serialVersionUID = 2L;
 	
+	public Location getLoc1() {
+		return null;
+	}
+	
+	public Location getLoc2() {
+		return null;
+	}
+	
 	public boolean isTaxiConnection() {
 		return false;
 	}

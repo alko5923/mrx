@@ -12,6 +12,14 @@ public class TubeConnection extends Relation {
 		this.loc2 = loc2;
 	}
 	
+	public Location getLoc1() {
+		return this.loc1;
+	}
+	
+	public Location getLoc2() {
+		return this.loc2;
+	}
+	
 	public boolean isTubeConnection() {
 		return true;
 	}

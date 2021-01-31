@@ -13,11 +13,13 @@ public class MrX {
 	private int tubeTicketsAvailable;
 	private List<String> ticketsUsed = new ArrayList<String>();
 	private List<Location> mrXReveals = new ArrayList<Location>();
-	private MrXTracker tracker = new MrXTracker();
+	private MrXTracker tracker;
 	private Map map;
 	
-	public MrX(Map newMap) {
+	public MrX(Map newMap, MrXTracker newTracker) {
 		this.map = newMap;
+		this.tracker = newTracker;
+		
 	}
 	
 	public MrXTracker getTracker() {
@@ -96,7 +98,7 @@ public class MrX {
 			
 			sb.append(tracker.toString());
 			
-			sb.append("---------------------------------\n");
+			//sb.append("---------------------------------\n");
 			
 			return sb.toString();
 		}

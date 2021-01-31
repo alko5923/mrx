@@ -2,7 +2,7 @@ package map;
 import java.util.*;
 import java.io.IOException;
 
-public class Location implements java.io.Serializable  {
+public class Location implements java.io.Serializable, Comparable<Location> {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -87,5 +87,21 @@ public class Location implements java.io.Serializable  {
 	private void readObjectNoData() throws java.io.ObjectStreamException {
         System.out.println("No data!");
     }
+
+	@Override
+	public boolean equals(Object loc) {
+		if(this == loc) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int compareTo(Location loc) {
+		if(this.equals(loc)) {
+			return 0;
+		}
+		return -1;
+	}
 	
 }

@@ -7,6 +7,13 @@ public class TaxiConnection extends Relation {
 	private Location loc1;
 	private Location loc2;
 	
+	public Location getLoc1() {
+		return this.loc1;
+	}
+	
+	public Location getLoc2() {
+		return this.loc2;
+	}
 	
 	public TaxiConnection(Location loc1, Location loc2) {
 		this.loc1 = loc1;

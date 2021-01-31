@@ -15,6 +15,7 @@ public class Hunter {
 	
 	public void setupGame() throws EmptyMapException {
 		setup.setupDemo();
+		trackMrX();
 	}
 	
 	public void moveMrX() {
@@ -33,6 +34,33 @@ public class Hunter {
 		String ticketUsed = sc.next();
 		this.setup.getMrX().addToUsedTickets(ticketUsed);
 		removeXticket(ticketUsed);
+	}
+	
+	
+	public void trackMrX() {
+		// add every location in the map that isn't occupied to the Tracker
+		// for each of those locations, loop through the location's connections
+		// every connection that doesn't include an occupied location, add to the list 
+		
+		Environment map = setup.getMap().getMap();
+		MrXTracker tracker = setup.getMrX().getTracker();
+		TreeSet<Integer> locations = new TreeSet<Integer>(map.keySet());
+		Iterator<Integer> iter = locations.iterator();
+		while(iter.hasNext()) {
+			int locInt = iter.next();
+			Location loc = map.get(locInt);
+			List<Relation> locPossibleMoves = new ArrayList<Relation>();
+			
+			if(loc.isOccupied()==false) {
+				for(int j = 0; j < loc.getConnections().size(); j+=1) {
+					Relation connection = loc.getConnections().get(j);
+					if(connection.getLoc1().isOccupied()==false && connection.getLoc2().isOccupied()==false) {
+						locPossibleMoves.add(connection);
+					}
+				}
+				tracker.put(loc, locPossibleMoves);
+			}
+		}
 	}
 	
 	public void removeXticket(String ticket) {
@@ -98,13 +126,8 @@ public class Hunter {
 		this.getSetup().getMrX().addToReveals(mrXLocation);
 	}
 	
-	public void mrXPossibleMoves() {
-		// check what locations in hashmap are not occupied
-		// add all Relations of those locations
-		
-	}
-	
 	public boolean move() {
+		trackMrX();
 		if(noMovesLeftCheck() == true) {
 			return false;
 		}

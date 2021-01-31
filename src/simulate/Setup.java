@@ -10,9 +10,10 @@ public class Setup {
 	
 	private Scanner sc = new Scanner(System.in);
 	private Map newMap = new Map();
+	private MrXTracker newTracker = new MrXTracker();
 	private int numberOfDetectives;
 	private int numberOfPolice;
-	private MrX mrX = new MrX(newMap);	
+	private MrX mrX = new MrX(newMap, newTracker);	
 	private List<Detective> listDetectives = new ArrayList<Detective>();
 
 	// TODO: remove startPosPolice once you have refactored code
@@ -126,12 +127,8 @@ public class Setup {
 		newMap.loadMap();
 		System.out.println(newMap.getMap());
 	
-		numberOfDetectives = setupDetectives();
-		/*
-		for (int i = 0; i < listDetectives.size(); i+=1) {
-			System.out.println(listDetectives.get(i));
-		}
-		*/
+		setupDetectives();
+		
 	}
 	
 	
